@@ -1,0 +1,6 @@
+veganwinners-API/app/config.py
+*/.idea
+*/__pycache__
+*/*/__pycache__
+*/*/*/__pycache__
+.DS_Store
