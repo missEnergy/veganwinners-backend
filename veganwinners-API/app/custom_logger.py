@@ -9,9 +9,7 @@ class InfoFilter(logging.Filter):
 
 
 def setup_logger(logger):
-    supported_keys = [ 'asctime', 'created', 'filename', 'funcName', 'levelname',
-        'levelno', 'lineno', 'module', 'msecs', 'message', 'name', 'pathname',
-        'process', 'processName', 'relativeCreated', 'thread', 'threadName']
+    supported_keys = [ 'asctime', 'message']
     custom_format = ' '.join((lambda x: ['%({0:s})'.format(i) for i in x])(supported_keys))
 
     formatter = jsonlogger.JsonFormatter(custom_format)
