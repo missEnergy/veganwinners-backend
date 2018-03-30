@@ -1,0 +1,8 @@
+INSERT INTO recipe (title, instructions) VALUES
+('KIP in tomatensaus', 'Dit wordt super lekker!\nSnijd de tomaten in kleine stukjes.\nKook dan de tomaten plat en pleur de kip erbij.\nKlaar!'),
+('Lekkere soep', 'Gooi het poeder in heet water');
+
+INSERT INTO ingredient (recipe_id, item, quantity) VALUES
+(1, 'tomaten', '1 kg'),
+(1, 'KIP', '10 gram'),
+(2, 'bouillonpoeder', '1 theelepel');
