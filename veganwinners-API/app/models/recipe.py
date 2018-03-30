@@ -16,3 +16,4 @@ class Recipe(Base):
 
     def __repr__(self):
         return '<{} {!r}>'.format(self.__type__.__name__, self.name)
+
