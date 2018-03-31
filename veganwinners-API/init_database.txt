@@ -1,8 +1,42 @@
-INSERT INTO recipe (title, instructions) VALUES
-('KIP in tomatensaus', 'Dit wordt super lekker!\nSnijd de tomaten in kleine stukjes.\nKook dan de tomaten plat en pleur de kip erbij.\nKlaar!'),
-('Lekkere soep', 'Gooi het poeder in heet water');
+INSERT INTO recipe (title, instructions, img) VALUES
+('Jaspers gevulde bladerdeeghapjes', 'Snij de ui en knoflook fijn. Snij de wortels redelijk fijn.\nMaak 500ml groentebouillon.\nBak de ui, knoflook en wortels met de helft van de boter.\nSnij de champignons in kleine stukjes en bak mee.\nVoeg wanneer de champignons goed zijn de rest van de boter en de bloem toe.\nLaat de bloem kort meebakken (ongeveer 2 minuten) en voeg daarna de groentebouillon, wijn en kruiden naar smaak toe.\nLaat het geheel inkoken tot de gewenste dikheid.\nLeg 4 plakjes bladerdeeg op een bakplaat. Doe hier stuk voor stuk de saus en nog een plakje om de hapjes te dichten op. Vouw de hapjes dicht.\nDoe in de oven op 200 graden tot het bladerdeeg goudbruin is.\n\nTips en tricks:\n\nVoor een mooiere presentatie kunnen ook vormpjes worden gebruikt om het bladerdeeg in te doen.', '/img/plaatje1.jpg'),
+('Simpele soep', 'Gooi het poeder in kokend water', '/img/plaatje2.jpg'),
+('Really awesome boeneburgers', '1. Zet de oven op 200 graden Celcius en rooster de zwarte bonen tot ze krokant zijn.\n2. Bak de ui met knoflook en voeg de sambal toe.\n3. chop de cashews en voeg toe aan de gebakken uien.\n4. Mix alle hamburgeringredienten.\n5. Bak de burgers op laag vuur in VEEL olie.\n6. Bouw de burgerbroodjes met je favo toppings :).', , '/img/plaatje3.jpg'),
+('Papas pindasaus', 'Verwarm de olie in de pan.\nSnijd het uitje fijn en fruit het in de olie.\nVoeg even later de fijngesneden knoflook toe.\nAls het bruin wordt de suiker meebakken en eventueel de sambal.\nZet het vuur laag en doe de pindakaas erbij en langzaam de melk.\nRoer met een garde tot je een gladde saus hebt.\nVoeg de ketjap toe en de kruiden.\nVoila, je pindasaus is klaar!\n\nTIP: Pindasaus heeft vaak de neiging om te schiften.\nJe kunt dan een eierdooier toevoegen (daar zit lecithine in, waardoor het vet weer met het water mengt).', , '/img/plaatje4.jpg')
+;
 
 INSERT INTO ingredient (recipe_id, item, quantity) VALUES
-(1, 'tomaten', '1 kg'),
-(1, 'KIP', '10 gram'),
-(2, 'bouillonpoeder', '1 theelepel');
+(1, 'bladerdeeg', '8 stuks'),
+(1, 'winterpeen', '1'),
+(1, 'champignons', '400 gram'),
+(1, 'bloem', '40 gram'),
+(1, 'plantaardige boter', '40 gram'),
+(1, 'rode wijn', 'een beetje'),
+(1, 'uitje', '1'),
+(1, 'knoflook', '2 teentjes'),
+(1, 'groentebouillon', '1 blokje'),
+(1, 'kruiden', 'naar smaak'),
+(2, 'bouillonpoeder', '1 theelepel'),
+(3, 'zwarte bonen', '2 blikken'),
+(3, 'olie', 'een goede scheut'),
+(3, 'ui', '1 stuk'),
+(3, 'geperste knoflook', '3 teentjes'),
+(3, 'sambal', 'theelepeltje, naar smaak'),
+(3, 'cashewnoten', '100 gr'),
+(3, 'huttekase', 'klein bakje'),
+(3, 'mayo', '2 eetlepels'),
+(3, 'ei', '1'),
+(3, 'paneermeel', 'zorg dat de eindstructuur stevig is'),
+(3, 'broodjes', '4 grote of 8 kleine'),
+(3, 'groente toppings en sauzen', 'naar smaak'),
+(4, '(rode) ui', '1 kleine'),
+(4, 'knoflook', '2 teentjes'),
+(4, 'arachide olie', '1 scheut'),
+(4, 'bruine suiker', '1 eetlepel'),
+(4, 'pindakaas (liefst met stukjes noot)', 'een halve pot'),
+(4, 'ketjap manis', '50-100 ml'),
+(4, '(kokos)melk', '200-300 ml'),
+(4, 'gemberpoeder', '1 theelepel'),
+(4, 'laos', '1 theelepel'),
+(4, 'sambal', 'naar behoefte')
+;
