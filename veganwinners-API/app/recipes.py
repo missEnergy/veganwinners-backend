@@ -17,6 +17,7 @@ def get_all_recipes(limit):
         "id": recipe.id,
         "title": recipe.title,
         "instructions": recipe.instructions,
+        "img": recipe.img,
         "ingredients": [dict([("id", ingredient.id), ("item", ingredient.item), ("quantity", ingredient.quantity)])
                         for ingredient in recipe.ingredients]
     } for recipe in recipes]
@@ -28,7 +29,7 @@ def get_all_recipes(limit):
 @recipes_blueprint.route('/test')
 def test_add_recipe():
 
-    recipe = Recipe(title="Een lekker recept", instructions="Zo moet je het maken. Easy!")
+    recipe = Recipe(title="Een lekker recept", instructions="Zo moet je het maken. Easy!", img="/img/vegan-pasta.jpg")
     ingredient = Ingredient(item='Bier', quantity='10 Liter')
     db_session.add(ingredient)
 
@@ -45,7 +46,7 @@ def add_recipe():
     data = request.data
     recipe_data = json.loads(data)
 
-    recipe = Recipe(title=recipe_data['title'], instructions=recipe_data['instructions'])
+    recipe = Recipe(title=recipe_data['title'], instructions=recipe_data['instructions'], img="/img/vegan-pasta.jpg")
     db_session.add(recipe)
 
     for ingredient in recipe_data['ingredients']:
