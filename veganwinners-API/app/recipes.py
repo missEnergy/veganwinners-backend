@@ -28,8 +28,8 @@ def get_all_recipes(limit):
 @recipes_blueprint.route('/one/<id>')
 def get_recipe_for_id(id):
     recipe = Recipe.query \
-        .filter(Recipe.id == id)[0] \
-        .limit(1)
+        .filter(Recipe.id == id) \
+        .limit(1)[0]
 
     data = {
         "id": recipe.id,
