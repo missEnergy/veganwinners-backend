@@ -4,12 +4,14 @@ from app.database import db_session, init_db
 from app.recipes import recipes_blueprint
 from app import config
 from app.custom_logger import setup_logger
+from flask_cors import CORS
 
 logger = logging.getLogger()
 logger.handlers = []
 setup_logger(logger)
 
 app = Flask(__name__)
+CORS(app)
 
 init_db()
 
