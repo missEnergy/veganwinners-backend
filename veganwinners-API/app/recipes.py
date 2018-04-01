@@ -27,20 +27,20 @@ def get_all_recipes(limit):
 
 @recipes_blueprint.route('/one/<id>')
 def get_recipe_for_id(id):
-    recipe = Recipe.query \
-        .filter(Recipe.id == id) \
-        .limit(1)[0]
+    try:
+        recipe = Recipe.query.filter(Recipe.id == id)[0]
 
-    data = {
-        "id": recipe.id,
-        "title": recipe.title,
-        "instructions": recipe.instructions,
-        "img": recipe.img,
-        "ingredients": [dict([("id", ingredient.id), ("item", ingredient.item), ("quantity", ingredient.quantity)])
-                        for ingredient in recipe.ingredients]
-    }
+        data = {
+            "id": recipe.id,
+            "title": recipe.title,
+            "instructions": recipe.instructions,
+            "img": recipe.img,
+            "ingredients": [dict([("id", ingredient.id), ("item", ingredient.item), ("quantity", ingredient.quantity)]) for ingredient in recipe.ingredients]
+        }
 
-    return return_result(data=data)
+        return return_result(data=data)
+    except IndexError:
+        return return_result(message="This recipe index does not exist", code=400, status="failure")
 
 
 # http://www.lizsander.com/programming/2015/09/08/SQLalchemy-part-2.html
