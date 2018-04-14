@@ -53,7 +53,11 @@ def get_recipe_for_id(id):
 #
 #     recipe.ingredients.append(ingredient)
 #     db_session.add(recipe)
-#     db_session.commit()
+#
+#     try:
+#       db_session.commit()
+#     except Exception, e:
+#       db_session.rollback()
 #
 #     return return_result(data="gelukt!!")
 #
@@ -72,6 +76,9 @@ def get_recipe_for_id(id):
 #         db_session.add(ingredient)
 #         recipe.ingredients.append(ingredient)
 #
-#     db_session.commit()
+#     try:
+#       db_session.commit()
+#     except Exception, e:
+#       db_session.rollback()
 #
 #     return return_result(data=recipe_data)
