@@ -11,8 +11,9 @@ engine = create_engine(config.DATABASE_URI,
                        )
 
 db_session = scoped_session(sessionmaker(autocommit=False,
-                                         autoflush=False,
-                                         bind=engine))
+                                         autoflush=True,
+                                         bind=engine,
+                                         transactional=False))
 Base = declarative_base()
 Base.query = db_session.query_property()
 

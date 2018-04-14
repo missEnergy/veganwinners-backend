@@ -43,35 +43,35 @@ def get_recipe_for_id(id):
         return return_result(message="This recipe index does not exist", code=400, status="failure")
 
 
-# http://www.lizsander.com/programming/2015/09/08/SQLalchemy-part-2.html
-@recipes_blueprint.route('/test')
-def test_add_recipe():
-
-    recipe = Recipe(title="Een lekker recept", instructions="Zo moet je het maken. Easy!", img="/img/vegan-pasta.jpg")
-    ingredient = Ingredient(item='Bier', quantity='10 Liter')
-    db_session.add(ingredient)
-
-    recipe.ingredients.append(ingredient)
-    db_session.add(recipe)
-    db_session.commit()
-
-    return return_result(data="gelukt!!")
-
-
-@recipes_blueprint.route('/add', methods=['POST'])
-def add_recipe():
-    # For Headers: Content-Type = application/json, raw Json body:
-    data = request.data
-    recipe_data = json.loads(data)
-
-    recipe = Recipe(title=recipe_data['title'], instructions=recipe_data['instructions'], img="/img/vegan-pasta.jpg")
-    db_session.add(recipe)
-
-    for ingredient in recipe_data['ingredients']:
-        ingredient = Ingredient(item=ingredient['item'], quantity=ingredient['quantity'])
-        db_session.add(ingredient)
-        recipe.ingredients.append(ingredient)
-
-    db_session.commit()
-
-    return return_result(data=recipe_data)
+# # http://www.lizsander.com/programming/2015/09/08/SQLalchemy-part-2.html
+# @recipes_blueprint.route('/test')
+# def test_add_recipe():
+#
+#     recipe = Recipe(title="Een lekker recept", instructions="Zo moet je het maken. Easy!", img="/img/vegan-pasta.jpg")
+#     ingredient = Ingredient(item='Bier', quantity='10 Liter')
+#     db_session.add(ingredient)
+#
+#     recipe.ingredients.append(ingredient)
+#     db_session.add(recipe)
+#     db_session.commit()
+#
+#     return return_result(data="gelukt!!")
+#
+#
+# @recipes_blueprint.route('/add', methods=['POST'])
+# def add_recipe():
+#     # For Headers: Content-Type = application/json, raw Json body:
+#     data = request.data
+#     recipe_data = json.loads(data)
+#
+#     recipe = Recipe(title=recipe_data['title'], instructions=recipe_data['instructions'], img="/img/vegan-pasta.jpg")
+#     db_session.add(recipe)
+#
+#     for ingredient in recipe_data['ingredients']:
+#         ingredient = Ingredient(item=ingredient['item'], quantity=ingredient['quantity'])
+#         db_session.add(ingredient)
+#         recipe.ingredients.append(ingredient)
+#
+#     db_session.commit()
+#
+#     return return_result(data=recipe_data)
