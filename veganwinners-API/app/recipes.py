@@ -7,8 +7,7 @@ import json
 
 recipes_blueprint = Blueprint('recipes', __name__)
 
-
-@recipes_blueprint.route('/<limit>', methods=['GET', 'OPTIONS'])
+@recipes_blueprint.route('/<limit>', methods=['GET'])
 def get_all_recipes(limit):
     recipes = Recipe.query \
         .limit(limit)
@@ -25,7 +24,7 @@ def get_all_recipes(limit):
     return return_result(data=data)
 
 
-@recipes_blueprint.route('/one/<id>', methods=['GET', 'OPTIONS'])
+@recipes_blueprint.route('/one/<id>', methods=['GET'])
 def get_recipe_for_id(id):
     try:
         recipe = Recipe.query.filter(Recipe.id == id)[0]
