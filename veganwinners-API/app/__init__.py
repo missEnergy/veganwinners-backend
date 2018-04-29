@@ -5,9 +5,6 @@ from app.recipes import recipes_blueprint
 from app import config
 from flask_cors import CORS
 
-logger = logging.getLogger()
-logger.handlers = []
-
 app = Flask(__name__)
 CORS(app)
 
