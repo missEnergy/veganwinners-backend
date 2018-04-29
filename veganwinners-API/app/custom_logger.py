@@ -19,19 +19,19 @@ def setup_logger(logger):
 
     logger.setLevel(logging.DEBUG)
 
-    #h1 = RotatingFileHandler('debug.log', maxBytes=1000000, backupCount=1)
-    h1 = logging.StreamHandler(sys.stdout)
+    h1 = RotatingFileHandler('debug.log', maxBytes=1000000, backupCount=1)
+    #h1 = logging.StreamHandler(sys.stdout)
     h1.setLevel(logging.DEBUG)
     h1.addFilter(InfoFilter())
     h1.setFormatter(formatter)
 
-    #h2 = RotatingFileHandler('warning.log', maxBytes=1000000, backupCount=1)
-    h2 = logging.StreamHandler()
+    h2 = RotatingFileHandler('warning.log', maxBytes=1000000, backupCount=1)
+    #h2 = logging.StreamHandler()
     h2.setLevel(logging.WARNING)
     h2.setFormatter(formatter)
 
-    #h3 = RotatingFileHandler('error.log', maxBytes=1000000, backupCount=1)
-    h3 = logging.StreamHandler()
+    h3 = RotatingFileHandler('error.log', maxBytes=1000000, backupCount=1)
+    #h3 = logging.StreamHandler()
     h3.setLevel(logging.ERROR)
     h3.setFormatter(formatter)
 

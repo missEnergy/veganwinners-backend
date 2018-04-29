@@ -1,0 +1,2 @@
+{"asctime": "2018-04-29 18:24:01,617", "levelname": "INFO", "lineno": 87, "module": "_internal", "message": " * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)", "name": "werkzeug"}
+{"asctime": "2018-04-29 18:24:11,379", "levelname": "INFO", "lineno": 87, "module": "_internal", "message": "127.0.0.1 - - [29/Apr/2018 18:24:11] \"\u001b[37mGET /api/recipes/10 HTTP/1.1\u001b[0m\" 200 -", "name": "werkzeug"}
