@@ -13,7 +13,7 @@ CORS(app)
 
 init_db()
 
-app.register_blueprint(recipes_blueprint, url_prefix='/recipes')
+app.register_blueprint(recipes_blueprint, url_prefix='/api/recipes')
 
 @app.errorhandler(500)
 def server_error(e):
