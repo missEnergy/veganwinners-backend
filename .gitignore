@@ -4,4 +4,5 @@ veganwinners-API/app/config.py
 */*/__pycache__
 */*/*/__pycache__
 .DS_Store
+veganwinners-API/*.log
 veganwinners-API/nohup.out
