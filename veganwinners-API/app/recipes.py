@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from app.models.recipe import Recipe
 from app.models.ingredient import Ingredient
 from app.helpers import return_result
-from app.database import db_session
+from app.database import db_session, clear_sessions
 import json
 
 recipes_blueprint = Blueprint('recipes', __name__)
@@ -21,6 +21,8 @@ def get_all_recipes(limit):
                         for ingredient in recipe.ingredients]
     } for recipe in recipes]
 
+    clear_sessions()
+
     return return_result(data=data)
 
 
@@ -36,6 +38,8 @@ def get_recipe_for_id(id):
             "img": recipe.img,
             "ingredients": [dict([("id", ingredient.id), ("item", ingredient.item), ("quantity", ingredient.quantity)]) for ingredient in recipe.ingredients]
         }
+
+        clear_sessions()
 
         return return_result(data=data)
     except IndexError:
