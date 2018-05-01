@@ -17,6 +17,9 @@ def get_all_recipes(limit):
         "title": recipe.title,
         "instructions": recipe.instructions,
         "img": recipe.img,
+        "type": recipe.type,
+        "time": recipe.time,
+        "people": recipe.people,
         "ingredients": [dict([("id", ingredient.id), ("item", ingredient.item), ("quantity", ingredient.quantity)])
                         for ingredient in recipe.ingredients]
     } for recipe in recipes]
@@ -36,6 +39,9 @@ def get_recipe_for_id(id):
             "title": recipe.title,
             "instructions": recipe.instructions,
             "img": recipe.img,
+            "type": recipe.type,
+            "time": recipe.time,
+            "people": recipe.people,
             "ingredients": [dict([("id", ingredient.id), ("item", ingredient.item), ("quantity", ingredient.quantity)]) for ingredient in recipe.ingredients]
         }
 

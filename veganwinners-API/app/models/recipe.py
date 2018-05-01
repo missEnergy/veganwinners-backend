@@ -9,12 +9,18 @@ class Recipe(Base):
     title = Column(String(255), nullable=False)
     instructions = Column(String(1000), nullable=False)
     img = Column(String(255), nullable=False)
+    type = Column(String(255), nullable=False)
+    time = Column(String(255), nullable=False)
+    people = Column(Integer, nullable=False)
     ingredients = relationship('Ingredient', backref='ingredient')
 
-    def __init__(self, title, instructions, img):
+    def __init__(self, title, instructions, img, type, time, people):
         self.title = title
         self.instructions = instructions
         self.img = img
+        self.type = type
+        self.time = time
+        self.people = people
 
     def __repr__(self):
         return '<{} {!r}>'.format(self.__type__.__name__, self.name)
