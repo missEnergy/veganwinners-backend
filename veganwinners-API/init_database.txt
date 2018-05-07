@@ -8,7 +8,9 @@ INSERT INTO recipe (title, instructions, img, type, time, people) VALUES
 ('Asian Comfort Bowl No.1', '1. Wok de voorgesneden groenten.\n2. Clean de sugar snaps en kook ze 3 minuten en de noodles in 2 minuten. (Als je goed timed kan dit in 1 pan...).\n3. Gooi de groenten, sugarsnaps en noodles in 1 pan en voeg de saus toe.\n4. Serveer in een comfortabele kom en besprenkel met de cashews (en eventueel ook nog met de gebakken uitjes).\n\nGa nu lekker op de bank zitten in je favo chill pants en smullen maar!', '/img/plaatje7.jpg', 'hoofdgerecht', '10 minuten', 1),
 ('Asian Comfort Bowl No.2', '1. Wok de voorgesneden groenten.\n2. Voeg de groene curry toe en bak even mee.\n3. Voeg nu alle andere curry-ingrediënten toe en breng aan de kook. Voeg wat water toe zodat alles goed ondergedompeld is.\n4. Zet op laag vuur en doe een deksel op de pan. Laat de rijst gaar worden. Roer af en toe.\n5. Serveer in een comfortabele kom en besprenkel met de cashews/gebakken uitjes naar smaak. Doe er ook een lekkere lepel atjar bij, on the side.\n\nGa nu lekker op de bank zitten in je favo chill pants en smullen maar!\n\nCopyright: de inspiratie voor dit recept is afkomstig uit het thaise kookboekje van Maartje.', '/img/plaatje8.jpg', 'hoofdgerecht', '25 minuten', 1),
 ('Asian Comfort Bowl No.3', '1. Wok de voorgesneden groenten en voeg daarna de quorn sate stukjes met saus toe.\n2. Kook de noodles in 2 minuten gaar.\n3. Serveer in een comfortabele kom.\n\nGa nu lekker op de bank zitten in je favo chill pants en smullen maar!\n\nDisclaimer: helaas is dit officieel niet vegan, want de quorn stukjes bevatten wat scharrelei-eiwit.', '/img/plaatje9.jpg', 'hoofdgerecht', '7 minuten', 1),
-('Pasta Pesto Peer', 'Ja ja, pasta pesto met... PPPPEER???\n\n Jazeker! En je zult niet meer anders willen ;)\n\n1. Pureer de walnoten, olie, 1 teentje knoflook, basilicum en kaas tot een pesto. Voeg eventueel peper, zout en kruiden naar smaak toe.\n2. Snij en bak een teentje knoflook, ui en paddenstoelen in een koekenpan.\n3. Voeg de bonen en stukjes peer toe en bak kort mee.\n4. Kook de tagliatelle. Giet ze af en meng dan met de groenten en de pesto.\n5. Serveer met rucola eroverheen!', '/img/plaatje10.jpg', 'hoofdgerecht', '25 minuten', 4)
+('Pasta Pesto Peer', 'Ja ja, pasta pesto met... PPPPEER???\n\n Jazeker! En je zult niet meer anders willen ;)\n\n1. Pureer de walnoten, olie, 1 teentje knoflook, basilicum en kaas tot een pesto. Voeg eventueel peper, zout en kruiden naar smaak toe.\n2. Snij en bak een teentje knoflook, ui en paddenstoelen in een koekenpan.\n3. Voeg de bonen en stukjes peer toe en bak kort mee.\n4. Kook de tagliatelle. Giet ze af en meng dan met de groenten en de pesto.\n5. Serveer met rucola eroverheen!', '/img/plaatje10.jpg', 'hoofdgerecht', '25 minuten', 4),
+('Bonenschotel Kouwenberg', '1. Bak de spekjes op op laag vuur in olie.\n2. Hak de knoflook fijn en snipper de ui. Bak mee in met de spekjes.\n3. Snijd de paprika\'s en bak samen met de ui en spekjes gaar. Wanneer alles zacht begint te worden kun je ook de bruine bonen toevoegen.\n4. Terwijl alle groenten snijd je de augurk, ananas en banaan in stukjes.\n5. Voeg als eerste de augurk, zilverui en ananas toe, pas op het laatste de banaan, en bak kort mee.\n6. Voeg de tomatenpuree toe en breng op smaak met gemberpoeder, chilipoeder, zout en peper.\n\nENJOY', '/img/plaatje11.jpg', 'hoofdgerecht', '20 minuten', 4),
+('Camper-couscous van Djolin', '1. Kook water en bereid daarmee de couscous.\n2. Snij alle groenten en bak ze.\n3. Gooi de kikkererwten bij de groenten en bak ze mee, voeg daarna de gepelde tomaten met sap en al toe.\n4. Dan de abrikozenstukjes erbij en sap naar smaak.\n5. Tot slot lekker kruiden!\n\nCouscous kan apart of er doorheen geserveerd worden.\n\nSmullen maar!', '/img/plaatje12.jpg', 'hoofdgerecht', '15 minuten', 4)
 ;
 
 INSERT INTO ingredient (recipe_id, item, quantity) VALUES
@@ -96,5 +98,31 @@ INSERT INTO ingredient (recipe_id, item, quantity) VALUES
 (10, 'zwarte bonen', '1 blik'),
 (10, 'peer', '2 grote'),
 (10, 'rucola', '75 gram'),
-(10, 'tagliatelle', '500 gram')
+(10, 'tagliatelle', '500 gram'),
+(11, 'vegetarische spekreepjes', '125 gram'),
+(11, 'uien', '2 grote'),
+(11, 'knoflook', '2 teentjes'),
+(11, 'paprika', '3 stuks'),
+(11, 'bruine bonen', '1 grote pot'),
+(11, 'ananas', '1 blikje'),
+(11, 'augurken', '3 stuks'),
+(11, 'banaan', '1 stuk'),
+(11, 'zilveruitjes', '4 eetlepels'),
+(11, 'gemberpoeder', 'naar smaak'),
+(11, 'chilipoeder', 'naar smaak'),
+(11, 'tomatenpuree', '1 blikje'),
+(12, 'uien', '2 grote'),
+(12, 'knoflook', '2 teentjes'),
+(12, 'paprika', '2 stuks'),
+(12, 'courgette', '1 stuk'),
+(12, 'aubergine', '1 stuk'),
+(12, 'couscous', '1 pak'),
+(12, 'kikkererwten', '1 blik'),
+(12, 'gepelde tomaten', '1 blik'),
+(12, 'abrikozen op sap', '1 blik'),
+(12, 'chilipoeder', 'naar smaak'),
+(12, 'paprikapoeder', 'naar smaak'),
+(12, 'komijn', 'naar smaak')
 ;
+
+
