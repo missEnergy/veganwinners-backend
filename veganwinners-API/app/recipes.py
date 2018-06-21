@@ -69,25 +69,28 @@ def get_recipe_for_id(id):
 #       db_session.rollback()
 #
 #     return return_result(data="gelukt!!")
-#
-#
-# @recipes_blueprint.route('/add', methods=['POST'])
-# def add_recipe():
-#     # For Headers: Content-Type = application/json, raw Json body:
-#     data = request.data
-#     recipe_data = json.loads(data)
-#
-#     recipe = Recipe(title=recipe_data['title'], instructions=recipe_data['instructions'], img="/img/vegan-pasta.jpg")
-#     db_session.add(recipe)
-#
-#     for ingredient in recipe_data['ingredients']:
-#         ingredient = Ingredient(item=ingredient['item'], quantity=ingredient['quantity'])
-#         db_session.add(ingredient)
-#         recipe.ingredients.append(ingredient)
-#
-#     try:
-#       db_session.commit()
-#     except Exception, e:
-#       db_session.rollback()
-#
-#     return return_result(data=recipe_data)
+
+@recipes_blueprint.route('/add', methods=['POST'])
+def add_recipe():
+    # For Headers: Content-Type = application/json, raw Json body:
+    data = request.data
+    recipe_data = json.loads(data)
+
+    recipe = Recipe(title=recipe_data['title'], instructions=recipe_data['instructions'],
+                    img=recipe_data['img'], type=recipe_data['type'], time=recipe_data['time'],
+                    people=recipe_data['people'])
+    db_session.add(recipe)
+
+    for ingredient in recipe_data['ingredients']:
+        ingredient = Ingredient(item=ingredient['item'], quantity=ingredient['quantity'])
+        db_session.add(ingredient)
+        recipe.ingredients.append(ingredient)
+
+    try:
+        db_session.commit()
+    except Exception:
+        db_session.rollback()
+
+    clear_sessions()
+
+    return return_result(data=recipe_data)
