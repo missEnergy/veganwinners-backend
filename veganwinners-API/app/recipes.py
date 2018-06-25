@@ -57,7 +57,7 @@ def get_recipe_for_id(id):
 @recipes_blueprint.route('/add', methods=['POST'])
 def add_recipe():
     data = request.data
-    recipe_data = json.loads(data)
+    recipe_data = json.loads(data.decode("utf-8"))
 
     recipe = Recipe(title=recipe_data['title'], instructions=recipe_data['instructions'],
                     img=recipe_data['img'], type=recipe_data['type'], time=recipe_data['time'],
