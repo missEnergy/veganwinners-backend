@@ -10,7 +10,9 @@ INSERT INTO recipe (title, instructions, img, type, time, people, owner) VALUES
 ('Asian Comfort Bowl No.3', '1. Wok de voorgesneden groenten en voeg daarna de quorn sate stukjes met saus toe.\n2. Kook de noodles in 2 minuten gaar.\n3. Serveer in een comfortabele kom.\n\nGa nu lekker op de bank zitten in je favo chill pants en smullen maar!\n\nDisclaimer: helaas is dit officieel niet vegan, want de quorn stukjes bevatten wat scharrelei-eiwit.', '/img/plaatje9.jpg', 'hoofdgerecht', '7 minuten', 1, 'Veganwinners Classic'),
 ('Pasta Pesto Peer', 'Ja ja, pasta pesto met... PPPPEER???\n\n Jazeker! En je zult niet meer anders willen ;)\n\n1. Pureer de walnoten, olie, 1 teentje knoflook, basilicum en kaas tot een pesto. Voeg eventueel peper, zout en kruiden naar smaak toe.\n2. Snij en bak een teentje knoflook, ui en paddenstoelen in een koekenpan.\n3. Voeg de bonen en stukjes peer toe en bak kort mee.\n4. Kook de tagliatelle. Giet ze af en meng dan met de groenten en de pesto.\n5. Serveer met rucola eroverheen!', '/img/plaatje10.jpg', 'hoofdgerecht', '25 minuten', 4, 'Veganwinners Classic'),
 ('Bonenschotel Kouwenberg', '1. Bak de spekjes op op laag vuur in olie.\n2. Hak de knoflook fijn en snipper de ui. Bak mee in met de spekjes.\n3. Snijd de paprika\'s en bak samen met de ui en spekjes gaar. Wanneer alles zacht begint te worden kun je ook de bruine bonen toevoegen.\n4. Terwijl alle groenten snijd je de augurk, ananas en banaan in stukjes.\n5. Voeg als eerste de augurk, zilverui en ananas toe, pas op het laatste de banaan, en bak kort mee.\n6. Voeg de tomatenpuree toe en breng op smaak met gemberpoeder, chilipoeder, zout en peper.\n\nENJOY', '/img/plaatje11.jpg', 'hoofdgerecht', '20 minuten', 4, 'Veganwinners Classic'),
-('Camper-couscous van Djolin', '1. Kook water en bereid daarmee de couscous.\n2. Snij alle groenten en bak ze.\n3. Gooi de kikkererwten bij de groenten en bak ze mee, voeg daarna de gepelde tomaten met sap en al toe.\n4. Dan de abrikozenstukjes erbij en sap naar smaak.\n5. Tot slot lekker kruiden!\n\nCouscous kan apart of er doorheen geserveerd worden.\n\nSmullen maar!', '/img/plaatje12.jpg', 'hoofdgerecht', '15 minuten', 4, 'Veganwinners Classic')
+('Camper-couscous van Djolin', '1. Kook water en bereid daarmee de couscous.\n2. Snij alle groenten en bak ze.\n3. Gooi de kikkererwten bij de groenten en bak ze mee, voeg daarna de gepelde tomaten met sap en al toe.\n4. Dan de abrikozenstukjes erbij en sap naar smaak.\n5. Tot slot lekker kruiden!\n\nCouscous kan apart of er doorheen geserveerd worden.\n\nSmullen maar!', '/img/plaatje12.jpg', 'hoofdgerecht', '15 minuten', 4, 'Veganwinners Classic'),
+('Paddenstoelen Tagliatelle', '1. Snijd de ui, wortel en alle paddenstoelen.\n2. Fruit de uitjes in olie in een pan en voeg de knoflook toe m.b.v. een knoflookpers.\n3. Bak de wortel en alle paddenstoelen mee.\n4. Wanneer het bijna gaar is, voeg de boter toe en het meel. Bak dit kort mee.\n5. Voeg de wijn en de bouillon toe en laat het geheel inkoken tot een gladde saus.\n6. Voeg (verse) kruiden naar smaak toe, zoals tijm en rozemarijn. En natuurlijk peper en zout.\n7. Kook ondertussen de verse tagliatelle in enkele minuten gaar en je bent klaar om te gaan smullen!', '/img/plaatje13.jpg', 'hoofdgerecht', '30 minuten', 4, 'Veganwinners Classic'),
+('Aziatisch Broodje Tempeh', 'Dit recept is gebaseerd op een restje van een overheerlijk avondmaal van MR, die we hopelijk ook nog op onze site publiceren binnenkort!\n\n1. Tempeh was in stukjes snijden en (op gevoel) met de volgende sausjes in de koekenpan gooien:\nsojasaus, oestersaus, ketjap manis\nNiet al teveel, net genoeg zodat de tempeh het opzuigt en er een soort slijmerig laagje over de tempeh zit die wat aanbakt en indikt naarmate je het opwarmt. 5-10 min bakken.\n\n2. Maak een beetje van "Papa\'s pindasaus", te vinden op onze site.\n3. Kook 200 ml water en los er 2 eetlepels suiker in op.\n4. Snijd de komkommer in dunne plakjes en overgiet de plakjes met het suikerwater en de wijnazijn. Laat het minstens een half uur intrekken.\n5. Beleg je broodje met de tempeh, komkommer in het zuur en de satesaus! Eet smakelijk!', '/img/plaatje14.jpg', 'lunch', '15 minuten voorbereiden en 30 minuten wachten', 4, 'Veganwinners Classic')
 ;
 
 INSERT INTO ingredient (recipe_id, item, quantity) VALUES
@@ -122,7 +124,26 @@ INSERT INTO ingredient (recipe_id, item, quantity) VALUES
 (12, 'abrikozen op sap', '1 blik'),
 (12, 'chilipoeder', 'naar smaak'),
 (12, 'paprikapoeder', 'naar smaak'),
-(12, 'komijn', 'naar smaak')
+(12, 'komijn', 'naar smaak'),
+(13, 'uien', '2 grote'),
+(13, 'knoflook', '2 teentjes'),
+(13, 'champignons', '400 gr'),
+(13, 'bospaddenstoelen', '400 gr'),
+(13, 'paddenstoelenmix', '250 gr'),
+(13, 'wortel', '1 stuk'),
+(13, 'boter', '50 gr'),
+(13, 'bloem', '50 gr'),
+(13, 'bouillon', '500 ml'),
+(13, 'witte wijn', 'een scheut'),
+(13, 'verse tagliatelle', '500 gr'),
+(14, 'tempeh', '1 pakje'),
+(14, 'sojasaus', 'een scheut'),
+(14, 'oestersaus', 'een scheut'),
+(14, 'ketjap manis', 'een scheut'),
+(14, 'komkommer', '1 stuk'),
+(14, 'suiker', '2 eetlepels'),
+(14, 'witte wijnazijn', '20 ml'),
+(14, 'harde broodjes', '4')
 ;
 
 
