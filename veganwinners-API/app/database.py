@@ -20,7 +20,6 @@ Base.query = db_session.query_property()
 def init_db():
     import app.models
     Base.metadata.create_all(bind=engine)
-    # Base.metadata.bind = engine
 
 
 def clear_sessions():
