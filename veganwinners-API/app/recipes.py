@@ -7,6 +7,7 @@ import json
 
 recipes_blueprint = Blueprint('recipes', __name__)
 
+
 @recipes_blueprint.route('/<limit>', methods=['GET'])
 def get_all_recipes(limit):
     recipes = Recipe.query \
@@ -24,6 +25,8 @@ def get_all_recipes(limit):
         "ingredients": [dict([("id", ingredient.id), ("item", ingredient.item), ("quantity", ingredient.quantity)])
                         for ingredient in recipe.ingredients]
     } for recipe in recipes]
+
+    sorted(data, key=lambda x: x.get('id'), reverse=True)
 
     clear_sessions()
 
