@@ -49,11 +49,10 @@ def get_recipe_for_id(id):
             "owner": recipe.owner,
             "ingredients": [dict([("id", ingredient.id), ("item", ingredient.item), ("quantity", ingredient.quantity)]) for ingredient in recipe.ingredients]
         }
-
         clear_sessions()
-
         return return_result(data=data)
     except IndexError:
+        clear_sessions()
         return return_result(message="This recipe index does not exist", code=400, status="failure")
 
 
@@ -74,9 +73,9 @@ def add_recipe():
 
     try:
         db_session.commit()
+        clear_sessions()
+        return return_result(data=recipe_data)
     except Exception:
         db_session.rollback()
-
-    clear_sessions()
-
-    return return_result(data=recipe_data)
+        clear_sessions()
+        return return_result(message="Dit ingredient kon niet worden toegevoegd aan veganwinners, controleer je velden of probeer het later opnieuw.", code=500, status="failure")
