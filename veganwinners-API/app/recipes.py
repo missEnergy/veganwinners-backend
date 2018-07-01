@@ -26,7 +26,7 @@ def get_all_recipes(limit):
                         for ingredient in recipe.ingredients]
     } for recipe in recipes]
 
-    sorted(data, key=lambda x: x.get('id'), reverse=True)
+    data = sorted(data, key=lambda x: x.get('id'), reverse=True)
 
     clear_sessions()
 
