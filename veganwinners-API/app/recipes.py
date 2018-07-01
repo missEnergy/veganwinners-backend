@@ -78,4 +78,4 @@ def add_recipe():
     except Exception:
         db_session.rollback()
         clear_sessions()
-        return return_result(message="Dit ingredient kon niet worden toegevoegd aan veganwinners, controleer je velden of probeer het later opnieuw.", code=500, status="failure")
+        return return_result(message="Dit recept kon niet worden toegevoegd aan veganwinners, controleer je velden of probeer het later opnieuw.", code=500, status="failure")
