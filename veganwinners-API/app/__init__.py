@@ -85,13 +85,13 @@ def add_recipe():
     data = request.data
     recipe_data = json.loads(data.decode("utf-8"))
 
-    recipe = Recipe(title=recipe_data['title'], instructions=recipe_data['instructions'].replace("‘", "'"),
-                    img=recipe_data['img'], type=recipe_data['type'], time=recipe_data['time'],
-                    people=recipe_data['people'], owner=recipe_data['owner'])
+    recipe = Recipe(title=recipe_data['title'].replace("‘", "'"), instructions=recipe_data['instructions'].replace("‘", "'"),
+                    img=recipe_data['img'], type=recipe_data['type'], time=recipe_data['time'].replace("‘", "'"),
+                    people=recipe_data['people'], owner=recipe_data['owner'].replace("‘", "'"))
     db_session.add(recipe)
 
     for ingredient in recipe_data['ingredients']:
-        ingredient = Ingredient(item=ingredient['item'], quantity=ingredient['quantity'])
+        ingredient = Ingredient(item=ingredient['item'].replace("‘", "'"), quantity=ingredient['quantity'].replace("‘", "'"))
         db_session.add(ingredient)
         recipe.ingredients.append(ingredient)
 
