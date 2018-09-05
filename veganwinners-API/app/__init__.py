@@ -121,8 +121,9 @@ def approve_recipe_for_id(id, approve):
                         img=recipe.img, type=recipe.type, time=recipe.time,
                         people=recipe.people, owner=recipe.owner, approved=True)
         db_session.add(recipe)
+        db_session.commit()
         clear_sessions()
-        return return_result(data=data)
+        return return_result(data="approved " + id)
     except IndexError:
         clear_sessions()
         return return_result(message="This recipe index does not exist", code=400, status="failure")
