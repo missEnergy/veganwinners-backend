@@ -114,13 +114,8 @@ def approve_recipe_for_id(id, approve):
     if approve != config.APPROVE_KEY:
         return return_result(message="Not the right key!", code=400, status="failure")
     try:
-        recipe = Recipe.query.filter(Recipe.id == id)[0]
-
-        recipe = Recipe(id=recipe.id, title=recipe.title,
-                        instructions=recipe.instructions,
-                        img=recipe.img, type=recipe.type, time=recipe.time,
-                        people=recipe.people, owner=recipe.owner, approved=True)
-        db_session.add(recipe)
+        for recipe in Recipe.query.filter(Recipe.id == id):
+            recipe.approved = True
         db_session.commit()
         clear_sessions()
         return return_result(data="approved " + id)
