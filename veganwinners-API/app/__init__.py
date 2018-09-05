@@ -33,11 +33,10 @@ recipes_blueprint = Blueprint('recipes', __name__)
 classify_blueprint = Blueprint('classify', __name__)
 
 
-@recipes_blueprint.route('/<limit>', methods=['GET'])
+@recipes_blueprint.route('/', methods=['GET'])
 @limiter.exempt
-def get_all_recipes(limit):
-    recipes = Recipe.query \
-        .limit(limit)
+def get_all_recipes():
+    recipes = Recipe.query
 
     data = [{
         "id": recipe.id,
@@ -59,7 +58,32 @@ def get_all_recipes(limit):
     return return_result(data=data)
 
 
-@recipes_blueprint.route('/one/<id>', methods=['GET'])
+@recipes_blueprint.route('/approved', methods=['GET'])
+@limiter.exempt
+def get_all_recipes_approved():
+    recipes = Recipe.query.filter(Recipe.approved)
+
+    data = [{
+        "id": recipe.id,
+        "title": recipe.title,
+        "instructions": recipe.instructions,
+        "img": recipe.img,
+        "type": recipe.type,
+        "time": recipe.time,
+        "people": recipe.people,
+        "owner": recipe.owner,
+        "ingredients": [dict([("id", ingredient.id), ("item", ingredient.item), ("quantity", ingredient.quantity)])
+                        for ingredient in recipe.ingredients]
+    } for recipe in recipes]
+
+    data = sorted(data, key=lambda x: x.get('id'), reverse=True)
+
+    clear_sessions()
+
+    return return_result(data=data)
+
+
+@recipes_blueprint.route('/<id>', methods=['GET'])
 @limiter.exempt
 def get_recipe_for_id(id):
     try:
@@ -84,6 +108,26 @@ def get_recipe_for_id(id):
         return return_result(message="This recipe index does not exist", code=400, status="failure")
 
 
+@recipes_blueprint.route('/<id>/<approve>', methods=['GET'])
+@limiter.exempt
+def approve_recipe_for_id(id, approve):
+    if approve != config.APPROVE_KEY:
+        return return_result(message="Not the right key!", code=400, status="failure")
+    try:
+        recipe = Recipe.query.filter(Recipe.id == id)[0]
+
+        recipe = Recipe(id=recipe.id, title=recipe.title,
+                        instructions=recipe.instructions,
+                        img=recipe.img, type=recipe.type, time=recipe.time,
+                        people=recipe.people, owner=recipe.owner, approved=True)
+        db_session.add(recipe)
+        clear_sessions()
+        return return_result(data=data)
+    except IndexError:
+        clear_sessions()
+        return return_result(message="This recipe index does not exist", code=400, status="failure")
+
+
 @recipes_blueprint.route('/add', methods=['POST'])
 def add_recipe():
     data = request.data
@@ -92,7 +136,7 @@ def add_recipe():
     recipe = Recipe(title=recipe_data['title'].replace("‘", "'"),
                     instructions=recipe_data['instructions'].replace("‘", "'"),
                     img=recipe_data['img'], type=recipe_data['type'], time=recipe_data['time'].replace("‘", "'"),
-                    people=recipe_data['people'], owner=recipe_data['owner'].replace("‘", "'"))
+                    people=recipe_data['people'], owner=recipe_data['owner'].replace("‘", "'"), approved=False)
     db_session.add(recipe)
 
     for ingredient in recipe_data['ingredients']:

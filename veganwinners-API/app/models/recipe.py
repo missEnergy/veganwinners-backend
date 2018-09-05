@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import Column, Integer, String, Text, Boolean
 from app.database import Base
 from sqlalchemy.orm import relationship, backref
 
@@ -13,15 +13,17 @@ class Recipe(Base):
     time = Column(String(255), nullable=False)
     people = Column(Integer, nullable=False)
     owner = Column(String(255), nullable=False)
+    approved = Column(Boolean, default=True)
     ingredients = relationship('Ingredient', backref='ingredient')
 
-    def __init__(self, title, instructions, img, type, time, people, owner):
+    def __init__(self, title, instructions, img, type, time, people, approved, owner):
         self.title = title
         self.instructions = instructions
         self.img = img
         self.type = type
         self.time = time
         self.people = people
+        self.approved = approved
         self.owner = owner
 
     def __repr__(self):
