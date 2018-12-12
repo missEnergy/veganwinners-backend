@@ -4,6 +4,7 @@ from flask import Blueprint, request
 from app.models.ingredient import Ingredient
 from app.models.recipe import Recipe
 from app.database import db_session, clear_sessions
+from app import config
 
 recipes_blueprint = Blueprint('recipes', __name__)
 
