@@ -8,6 +8,9 @@ First, create a file config.py in 'app/' with content:
 DATABASE_URI = 'mysql://<user>:<password>@localhost:<port>/<database-name>'
 CLARIFAI_KEY = '<the key>'
 APPROVE_KEY = '<the approve password>'
+API_KEY = '<the cloudinary api key>'
+API_SECRET = '<the cloudinary api secret>'
+CLOUD_NAME = '<the cloudinary name>'
 ```
 
 ## How to run this API locally
