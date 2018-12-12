@@ -9,7 +9,6 @@ recipes_blueprint = Blueprint('recipes', __name__)
 
 
 @recipes_blueprint.route('/', methods=['GET'])
-# @limiter.exempt
 def get_all_recipes():
     recipes = Recipe.query
 
@@ -34,7 +33,6 @@ def get_all_recipes():
 
 
 @recipes_blueprint.route('/approved', methods=['GET'])
-# @limiter.exempt
 def get_all_recipes_approved():
     recipes = Recipe.query.filter(Recipe.approved)
 
@@ -59,7 +57,6 @@ def get_all_recipes_approved():
 
 
 @recipes_blueprint.route('/<id>', methods=['GET'])
-# @limiter.exempt
 def get_recipe_for_id(id):
     try:
         recipe = Recipe.query.filter(Recipe.id == id)[0]
@@ -84,7 +81,6 @@ def get_recipe_for_id(id):
 
 
 @recipes_blueprint.route('/<id>/<approve>', methods=['GET'])
-# @limiter.exempt
 def approve_recipe_for_id(id, approve):
     if approve != config.APPROVE_KEY:
         return return_result(message="Not the right key!", code=400, status="failure")
