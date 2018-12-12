@@ -12,7 +12,7 @@ classify_blueprint = Blueprint('classify', __name__)
 def upload_image():
     try:
         image = request.files['img']
-        upload_result = upload(image, api_key=config.API_KEY, api_secret=config.API_SECRET,
+        upload_result = upload(image, upload_preset=config.UPLOAD_PRESET, api_key=config.API_KEY, api_secret=config.API_SECRET,
                                cloud_name=config.CLOUD_NAME, return_delete_token=True)
         token = upload_result['delete_token']
         img_url = upload_result['secure_url']

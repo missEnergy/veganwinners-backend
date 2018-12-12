@@ -11,6 +11,7 @@ APPROVE_KEY = '<the approve password>'
 API_KEY = '<the cloudinary api key>'
 API_SECRET = '<the cloudinary api secret>'
 CLOUD_NAME = '<the cloudinary name>'
+UPLOAD_PRESET = '<the upload preset>'
 ```
 
 ## How to run this API locally
