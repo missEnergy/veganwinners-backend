@@ -7,3 +7,4 @@ veganwinners-API/nohup.out
 .ipynb_checkpoints/
 image_classification_recipes.ipynb
 **.pyc
+.venv/
