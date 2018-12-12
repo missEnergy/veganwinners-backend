@@ -23,7 +23,8 @@ def upload_image():
             data = {
                 "food": True,
                 "forbidden": forbidden,
-                "used": used
+                "used": used,
+                "url": img_url
             }
             return return_result(data=data)
         else:
