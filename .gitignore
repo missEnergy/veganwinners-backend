@@ -1,10 +1,10 @@
-veganwinners-API/app/config.py
-*/.idea
-*/__pycache__
-*/*/__pycache__
-*/*/*/__pycache__
+app/config.py
+.idea
+**/__pycache__
 .DS_Store
 veganwinners-API/*.log
 veganwinners-API/nohup.out
 .ipynb_checkpoints/
 image_classification_recipes.ipynb
+**.pyc
+.venv/
