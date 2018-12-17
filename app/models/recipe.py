@@ -14,9 +14,10 @@ class Recipe(Base):
     people = Column(Integer, nullable=False)
     owner = Column(String(255), nullable=False)
     approved = Column(Boolean, default=True)
+    likes = Column(Integer, default=0)
     ingredients = relationship('Ingredient', backref='ingredient')
 
-    def __init__(self, title, instructions, img, type, time, people, approved, owner):
+    def __init__(self, title, instructions, img, type, time, people, approved, likes, owner):
         self.title = title
         self.instructions = instructions
         self.img = img
@@ -24,6 +25,7 @@ class Recipe(Base):
         self.time = time
         self.people = people
         self.approved = approved
+        self.likes = likes
         self.owner = owner
 
     def __repr__(self):
