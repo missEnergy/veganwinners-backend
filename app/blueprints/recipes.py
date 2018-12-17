@@ -62,7 +62,7 @@ def get_all_recipes_approved():
 @recipes_blueprint.route('/<id>', methods=['GET'])
 def get_recipe_for_id(id):
     try:
-        recipe = Recipe.query.filter(Recipe.id == id and Recipe.approved)[0]
+        recipe = Recipe.query.filter(Recipe.id == id, Recipe.approved)[0]
 
         data = {
             "id": recipe.id,
