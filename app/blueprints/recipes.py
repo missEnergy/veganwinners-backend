@@ -35,6 +35,23 @@ def get_all_recipes():
     return return_result(data=data)
 
 
+@recipes_blueprint.route('/reviews', methods=['GET'])
+def get_all_recipe_reviews():
+    reviews = Review.query
+
+    data = [{
+        "id": review.id,
+        "recipe_id": review.recipe_id,
+        "credit": review.credit,
+        "text": review.text,
+        "approved": review.approved
+    } for review in reviews]
+
+    clear_sessions()
+
+    return return_result(data=data)
+
+
 @recipes_blueprint.route('/approved', methods=['GET'])
 def get_all_recipes_approved():
     recipes = Recipe.query.filter(Recipe.approved)
