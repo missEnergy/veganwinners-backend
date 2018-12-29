@@ -3,6 +3,7 @@ from app.helpers import return_result
 from flask import Blueprint, request
 from app.models.ingredient import Ingredient
 from app.models.recipe import Recipe
+from app.models.review import Review
 from app.database import db_session, clear_sessions
 from app import config
 
@@ -126,6 +127,40 @@ def approve_recipe_for_id(id, approve):
         return return_result(message="This recipe index does not exist", code=400, status="failure")
 
 
+@recipes_blueprint.route('/<id>/<review_id>/<approve>', methods=['GET'])
+def get_review_for_recipe_using_approval(id, review_id, approve):
+    if approve != config.APPROVE_KEY:
+        return return_result(message="Not the right approve key!", code=400, status="failure")
+    try:
+        recipe = Recipe.query.filter(Recipe.id == id)[0]
+
+        data = {
+            "review": [dict([("id", review.id), ("credit", review.credit), ("text", review.text)]) for review in
+                       recipe.reviews if review.id == review_id][0],
+            "recipe_title": recipe.title
+        }
+        clear_sessions()
+        return return_result(data=data)
+    except IndexError:
+        clear_sessions()
+        return return_result(message="This recipe index does not exist", code=400, status="failure")
+
+
+@recipes_blueprint.route('/approve/review/<review_id>/<approve>', methods=['GET'])
+def approve_review_for_recipe(review_id,  approve):
+    if approve != config.APPROVE_KEY:
+        return return_result(message="Not the right approve key!", code=400, status="failure")
+    try:
+        for review in Review.query.filter(Review.id == review_id):
+            review.approved = True
+        db_session.commit()
+        clear_sessions()
+        return return_result(data="approved review" + review_id)
+    except IndexError:
+        clear_sessions()
+        return return_result(message="This review index does not exist", code=400, status="failure")
+
+
 @recipes_blueprint.route('/<id>/likes', methods=['GET'])
 def add_like_for_recipe_id(id):
     try:
@@ -167,3 +202,21 @@ def add_recipe():
             message="Dit recept kon niet worden toegevoegd aan veganwinners, "
                     "controleer je velden of probeer het later opnieuw.",
             code=500, status="failure")
+
+
+@recipes_blueprint.route('/review', methods=['POST'])
+def add_review():
+    # try:
+    data = request.data
+    review_data = json.loads(data.decode("utf-8"))
+    for recipe in Recipe.query.filter(Recipe.id == review_data['id']):
+        review = Review(credit=review_data['credit'].replace("‘", "'"),
+                        text=review_data['credit'].replace("‘", "'"), approved=False)
+        db_session.add(review)
+        recipe.reviews.append(review)
+    db_session.commit()
+    clear_sessions()
+    return return_result(data="added review for recipe with id: " + review_data['id'])
+    # except IndexError:
+    #     clear_sessions()
+    #     return return_result(message="This recipe index does not exist", code=400, status="failure")

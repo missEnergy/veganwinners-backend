@@ -16,6 +16,7 @@ class Recipe(Base):
     approved = Column(Boolean, default=True)
     likes = Column(Integer, default=0)
     ingredients = relationship('Ingredient', backref='ingredient')
+    reviews = relationship('Review', backref='review')
 
     def __init__(self, title, instructions, img, type, time, people, approved, likes, owner):
         self.title = title
