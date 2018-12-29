@@ -213,7 +213,7 @@ def add_review():
         review_data = json.loads(data.decode("utf-8"))
         for recipe in Recipe.query.filter(Recipe.id == review_data['id']):
             review = Review(credit=review_data['credit'].replace("‘", "'"),
-                            text=review_data['credit'].replace("‘", "'"), approved=False)
+                            text=review_data['text'].replace("‘", "'"), approved=False)
             db_session.add(review)
             recipe.reviews.append(review)
         db_session.commit()
