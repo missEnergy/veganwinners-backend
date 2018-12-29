@@ -76,7 +76,9 @@ def get_recipe_for_id(id):
             "owner": recipe.owner,
             "likes": recipe.likes,
             "ingredients": [dict([("id", ingredient.id), ("item", ingredient.item), ("quantity", ingredient.quantity)])
-                            for ingredient in recipe.ingredients]
+                            for ingredient in recipe.ingredients],
+            "reviews": [dict([("id", review.id), ("credit", review.credit), ("text", review.text)]) for review in
+                        recipe.reviews if review.approved]
         }
         clear_sessions()
         return return_result(data=data)
@@ -147,7 +149,7 @@ def get_review_for_recipe_using_approval(id, review_id, approve):
 
 
 @recipes_blueprint.route('/approve/review/<review_id>/<approve>', methods=['GET'])
-def approve_review_for_recipe(review_id,  approve):
+def approve_review_for_recipe(review_id, approve):
     if approve != config.APPROVE_KEY:
         return return_result(message="Not the right approve key!", code=400, status="failure")
     try:
@@ -206,17 +208,17 @@ def add_recipe():
 
 @recipes_blueprint.route('/review', methods=['POST'])
 def add_review():
-    # try:
-    data = request.data
-    review_data = json.loads(data.decode("utf-8"))
-    for recipe in Recipe.query.filter(Recipe.id == review_data['id']):
-        review = Review(credit=review_data['credit'].replace("‘", "'"),
-                        text=review_data['credit'].replace("‘", "'"), approved=False)
-        db_session.add(review)
-        recipe.reviews.append(review)
-    db_session.commit()
-    clear_sessions()
-    return return_result(data="added review for recipe with id: " + review_data['id'])
-    # except IndexError:
-    #     clear_sessions()
-    #     return return_result(message="This recipe index does not exist", code=400, status="failure")
+    try:
+        data = request.data
+        review_data = json.loads(data.decode("utf-8"))
+        for recipe in Recipe.query.filter(Recipe.id == review_data['id']):
+            review = Review(credit=review_data['credit'].replace("‘", "'"),
+                            text=review_data['credit'].replace("‘", "'"), approved=False)
+            db_session.add(review)
+            recipe.reviews.append(review)
+        db_session.commit()
+        clear_sessions()
+        return return_result(data="added review for recipe with id: " + review_data['id'])
+    except IndexError:
+        clear_sessions()
+        return return_result(message="This recipe index does not exist", code=400, status="failure")
