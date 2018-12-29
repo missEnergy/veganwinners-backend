@@ -129,12 +129,12 @@ def approve_recipe_for_id(id, approve):
         return return_result(message="This recipe index does not exist", code=400, status="failure")
 
 
-@recipes_blueprint.route('/<id>/<review_id>/<approve>', methods=['GET'])
-def get_review_for_recipe_using_approval(id, review_id, approve):
+@recipes_blueprint.route('/<recipe_id>/<review_id>/<approve>', methods=['GET'])
+def get_review_for_recipe_using_approval(recipe_id, review_id, approve):
     if approve != config.APPROVE_KEY:
         return return_result(message="Not the right approve key!", code=400, status="failure")
     try:
-        recipe = Recipe.query.filter(Recipe.id == id)[0]
+        recipe = Recipe.query.filter(Recipe.id == recipe_id)[0]
 
         data = {
             "review": [dict([("id", review.id), ("credit", review.credit), ("text", review.text)]) for review in
@@ -157,7 +157,7 @@ def approve_review_for_recipe(review_id, approve):
             review.approved = True
         db_session.commit()
         clear_sessions()
-        return return_result(data="approved review" + review_id)
+        return return_result(data="approved review " + review_id)
     except IndexError:
         clear_sessions()
         return return_result(message="This review index does not exist", code=400, status="failure")
