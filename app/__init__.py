@@ -7,7 +7,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-
+from sqlalchemy import or_
 from app import config
 from app.clarifai import has_food, forbidden_ingredients, vegi_ingredients_used
 from app.database import init_db, db_session, clear_sessions
@@ -74,10 +74,14 @@ def get_all_recipe_reviews():
     return return_result(data=data)
 
 
-@recipes_blueprint.route('/approved', methods=['GET'])
+@recipes_blueprint.route('/approved/<search>', methods=['GET'])
 @limiter.exempt
-def get_all_recipes_approved():
-    recipes = Recipe.query.filter(Recipe.approved)
+def get_all_recipes_approved(search):
+    if search == '*':
+        recipes = Recipe.query.filter(Recipe.approved)
+    else:
+        recipes = Recipe.query.filter(Recipe.approved).filter(or_(Recipe.title.like("%" + search + "%"),
+                                                              Recipe.instructions.like("%" + search + "%")))
 
     data = [{
         "id": recipe.id,
