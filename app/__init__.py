@@ -77,8 +77,11 @@ def get_all_recipe_reviews():
 @recipes_blueprint.route('/approved/<search>', methods=['GET'])
 @limiter.exempt
 def get_all_recipes_approved(search):
-    recipes = Recipe.query.filter(Recipe.approved).filter(or_(Recipe.title.like(search),
-                                                              Recipe.instructions.like(search)))
+    if search == '*':
+        recipes = Recipe.query.filter(Recipe.approved)
+    else:
+        recipes = Recipe.query.filter(Recipe.approved).filter(or_(Recipe.title.like("%" + search + "%"),
+                                                              Recipe.instructions.like("%" + search + "%")))
 
     data = [{
         "id": recipe.id,
