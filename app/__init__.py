@@ -21,7 +21,7 @@ CORS(application)
 limiter = Limiter(
     application,
     key_func=get_remote_address,
-    default_limits=["10 per day", "5 per hour"]
+    default_limits=["20 per day", "10 per hour"]
 )
 
 init_db()
