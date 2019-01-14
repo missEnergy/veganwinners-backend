@@ -231,7 +231,7 @@ def add_recipe():
         db_session.commit()
         clear_sessions()
         return return_result(data=recipe_data)
-    except ValueError:
+    except Exception:
         db_session.rollback()
         clear_sessions()
         return return_result(message="Je bereidingswijze is te lang, kort hem a.u.b. wat in.", code=500, status="failure")

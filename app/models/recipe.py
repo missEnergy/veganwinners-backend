@@ -7,7 +7,7 @@ class Recipe(Base):
     __tablename__ = 'recipe'
     id = Column(Integer, primary_key=True, autoincrement=True, unique=True)
     title = Column(String(255), nullable=False)
-    instructions = Column(String(1000), nullable=False)
+    instructions = Column(String(5000), nullable=False)
     img = Column(String(255), nullable=False)
     type = Column(String(255), nullable=False)
     time = Column(String(255), nullable=False)
