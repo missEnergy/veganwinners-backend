@@ -206,6 +206,7 @@ def add_like_for_recipe_id(id):
 
 
 @recipes_blueprint.route('/add', methods=['POST'])
+@limiter.exempt
 def add_recipe():
     data = request.data
     recipe_data = json.loads(data.decode("utf-8"))
