@@ -73,6 +73,11 @@ def get_all_recipe_reviews():
 
     return return_result(data=data)
 
+@recipes_blueprint.route('/approved', methods=['GET'])
+@limiter.exempt
+def get_all_recipes_approved():
+    return get_all_recipes_approved_with_search_and_type('*', "Alle")
+
 @recipes_blueprint.route('/approved/<search>', methods=['GET'])
 @limiter.exempt
 def get_all_recipes_approved_with_search(search):
