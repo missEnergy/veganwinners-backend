@@ -73,15 +73,34 @@ def get_all_recipe_reviews():
 
     return return_result(data=data)
 
+@recipes_blueprint.route('/approved', methods=['GET'])
+@limiter.exempt
+def get_all_recipes_approved():
+    return get_all_recipes_approved_with_search_and_type('*', "Alle")
 
 @recipes_blueprint.route('/approved/<search>', methods=['GET'])
 @limiter.exempt
-def get_all_recipes_approved(search):
-    if search == '*':
+def get_all_recipes_approved_with_search(search):
+    return get_all_recipes_approved_with_search_and_type(search, "Alle")
+
+@recipes_blueprint.route('/approved/<search>/typed/<type>', methods=['GET'])
+@limiter.exempt
+def get_all_recipes_approved_with_search_and_type(search, type):
+    if search == '*' and type == "Alle":
         recipes = Recipe.query.filter(Recipe.approved)
+    elif type == "Alle":
+        recipes = Recipe.query\
+            .filter(Recipe.approved)\
+            .filter(or_(Recipe.title.like("%" + search + "%"), Recipe.instructions.like("%" + search + "%")))
+    elif search == '*':
+        recipes = Recipe.query\
+            .filter(Recipe.approved)\
+            .filter(Recipe.type == type)
     else:
-        recipes = Recipe.query.filter(Recipe.approved).filter(or_(Recipe.title.like("%" + search + "%"),
-                                                              Recipe.instructions.like("%" + search + "%")))
+        recipes = Recipe.query \
+            .filter(Recipe.approved) \
+            .filter(or_(Recipe.title.like("%" + search + "%"), Recipe.instructions.like("%" + search + "%"))) \
+            .filter(Recipe.type == type)
 
     data = [{
         "id": recipe.id,
