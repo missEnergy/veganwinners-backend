@@ -45,6 +45,7 @@ def get_all_recipes():
         "people": recipe.people,
         "owner": recipe.owner,
         "likes": recipe.likes,
+        "vegan": recipe.vegan,
         "ingredients": [dict([("id", ingredient.id), ("item", ingredient.item), ("quantity", ingredient.quantity)])
                         for ingredient in recipe.ingredients]
     } for recipe in recipes]
@@ -112,6 +113,7 @@ def get_all_recipes_approved_with_search_and_type(search, type):
         "people": recipe.people,
         "owner": recipe.owner,
         "likes": recipe.likes,
+        "vegan": recipe.vegan,
         "ingredients": [dict([("id", ingredient.id), ("item", ingredient.item), ("quantity", ingredient.quantity)])
                         for ingredient in recipe.ingredients]
     } for recipe in recipes]
@@ -139,6 +141,7 @@ def get_recipe_for_id(id):
             "people": recipe.people,
             "owner": recipe.owner,
             "likes": recipe.likes,
+            "vegan": recipe.vegan,
             "ingredients": [dict([("id", ingredient.id), ("item", ingredient.item), ("quantity", ingredient.quantity)])
                             for ingredient in recipe.ingredients],
             "reviews": [dict([("id", review.id), ("credit", review.credit), ("text", review.text)]) for review in
@@ -169,6 +172,7 @@ def get_recipe_for_id_using_approval(id, approve):
             "people": recipe.people,
             "owner": recipe.owner,
             "likes": recipe.likes,
+            "vegan": recipe.vegan,
             "ingredients": [dict([("id", ingredient.id), ("item", ingredient.item), ("quantity", ingredient.quantity)])
                             for ingredient in recipe.ingredients]
         }
@@ -237,7 +241,7 @@ def add_recipe():
     recipe = Recipe(title=recipe_data['title'].replace("‘", "'"),
                     instructions=recipe_data['instructions'].replace("‘", "'"),
                     img=recipe_data['img'], type=recipe_data['type'], time=recipe_data['time'].replace("‘", "'"),
-                    people=recipe_data['people'], owner=recipe_data['owner'].replace("‘", "'"), approved=False, likes=0)
+                    people=recipe_data['people'], vegan=recipe_data['vegan'], owner=recipe_data['owner'].replace("‘", "'"), approved=False, likes=0)
     db_session.add(recipe)
 
     for ingredient in recipe_data['ingredients']:
