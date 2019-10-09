@@ -15,10 +15,11 @@ class Recipe(Base):
     owner = Column(String(255), nullable=False)
     approved = Column(Boolean, default=True)
     likes = Column(Integer, default=0)
+    vegan = Column(Boolean, default=True)
     ingredients = relationship('Ingredient', backref='ingredient')
     reviews = relationship('Review', backref='review')
 
-    def __init__(self, title, instructions, img, type, time, people, approved, likes, owner):
+    def __init__(self, title, instructions, img, type, time, people, approved, likes, owner, vegan):
         self.title = title
         self.instructions = instructions
         self.img = img
@@ -28,6 +29,7 @@ class Recipe(Base):
         self.approved = approved
         self.likes = likes
         self.owner = owner
+        self.vegan = vegan
 
     def __repr__(self):
         return '<{} {!r}>'.format(self.__type__.__name__, self.name)
