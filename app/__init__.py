@@ -302,9 +302,9 @@ def upload_image():
             requests.post("https://api.cloudinary.com/v1_1/" + config.CLOUD_NAME + "/delete_by_token",
                           data={'token': token})
             return return_result(data={'food': False})
-    except Exception:
+    except Exception as e:
         return return_result(
-            message="Er is een onverwachte fout opgetreden. Neem a.u.b. contact op met veganwinners.",
+            message="Er is een onverwachte fout opgetreden. Neem a.u.b. contact op met veganwinners. {0}".format(e),
             code=500, status="failure")
 
 
