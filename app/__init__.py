@@ -228,7 +228,7 @@ def add_like_for_recipe_id(id):
         return return_result(message="This recipe index does not exist", code=400, status="failure")
 
 def replacer(x):
-    return x.replace.replace("‘", "'").replace("’", "'")
+    return x.replace("‘", "'").replace("’", "'")
 
 @recipes_blueprint.route('/add', methods=['POST'])
 @limiter.exempt
