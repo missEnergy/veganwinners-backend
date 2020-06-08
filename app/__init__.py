@@ -227,6 +227,8 @@ def add_like_for_recipe_id(id):
         clear_sessions()
         return return_result(message="This recipe index does not exist", code=400, status="failure")
 
+def replacer(x):
+    return x.replace.replace("‘", "'").replace("’", "'")
 
 @recipes_blueprint.route('/add', methods=['POST'])
 @limiter.exempt
@@ -238,15 +240,15 @@ def add_recipe():
         return return_result(
             message="Je hebt geen geldig plaatje geupload.",
             code=500, status="failure")
-    recipe = Recipe(title=recipe_data['title'].replace("‘", "'"),
-                    instructions=recipe_data['instructions'].replace("‘", "'"),
-                    img=recipe_data['img'], type=recipe_data['type'], time=recipe_data['time'].replace("‘", "'"),
-                    people=recipe_data['people'], vegan=recipe_data['vegan'], owner=recipe_data['owner'].replace("‘", "'"), approved=False, likes=0)
+    recipe = Recipe(title=replacer(recipe_data['title']),
+                    instructions=replacer(recipe_data['instructions']),
+                    img=recipe_data['img'], type=recipe_data['type'], time=replacer(recipe_data['time']),
+                    people=recipe_data['people'], vegan=recipe_data['vegan'], owner=replacer(recipe_data['owner']), approved=False, likes=0)
     db_session.add(recipe)
 
     for ingredient in recipe_data['ingredients']:
-        ingredient = Ingredient(item=ingredient['item'].replace("‘", "'"),
-                                quantity=ingredient['quantity'].replace("‘", "'"))
+        ingredient = Ingredient(item=replacer(ingredient['item']),
+                                quantity=replacer(ingredient['quantity']))
         db_session.add(ingredient)
         recipe.ingredients.append(ingredient)
 
@@ -266,8 +268,8 @@ def add_review():
         data = request.data
         review_data = json.loads(data.decode("utf-8"))
         for recipe in Recipe.query.filter(Recipe.id == review_data['id']):
-            review = Review(credit=review_data['credit'].replace("‘", "'"),
-                            text=review_data['text'].replace("‘", "'"), approved=False)
+            review = Review(credit=replacer(review_data['credit']),
+                            text=replacer(review_data['text']), approved=False)
             db_session.add(review)
             recipe.reviews.append(review)
         db_session.commit()
